@@ -1,11 +1,20 @@
-import { callSearchUser } from '../data/Api';
+import { IApi } from './IApi';
 
-export function searchUser(text: string) {
-  const callResult = callSearchUser(text);
-  if (callResult.status == 'ok') {
-    return callResult.result;
+export class User {
+
+  private api;
+
+  constructor(api: IApi) {
+    this.api = api;
   }
-  else {
-    throw Error('no user found');
+
+  searchUser(text: string) {
+    const callResult = this.api.callSearchUser(text);
+    if (callResult.status == 'ok') {
+      return callResult.result;
+    }
+    else {
+      throw Error('no user found');
+    }
   }
 }
