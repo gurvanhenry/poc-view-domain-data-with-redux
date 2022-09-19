@@ -1,4 +1,4 @@
-import { searchUser } from './SearchUserScreen';
+import { searchUser } from './User';
 
 it('should return user:Gurvan if I search G*', () => {
   const out = searchUser('G*');
@@ -10,7 +10,8 @@ it('should return user:Alfred if I search A*', () => {
   expect(out).toBe("user:Alfred");
 });
 
-it('should return "" if I search TU*', () => {
-  const out = searchUser('TU*');
-  expect(out).toBe("");
+it('should throw error if I search TU*', () => {
+  expect(() => {
+    const out = searchUser('TU*');
+  }).toThrow();
 });
