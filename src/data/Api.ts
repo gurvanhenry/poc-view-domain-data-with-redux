@@ -1,4 +1,4 @@
-import { IApi } from '../domain/IApi';
+import { IApi } from "../domain-shared/IApi";
 
 export class Api implements IApi {
 

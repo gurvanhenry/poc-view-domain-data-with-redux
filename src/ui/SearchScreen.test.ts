@@ -1,16 +1,12 @@
-import { renderSearchUser } from './SearchScreen';
+import { renderSearchUserResult, runNewUserSearch } from "./SearchScreen";
 
-it('should return user:Gurvan if I search G*', () => {
-  const out = renderSearchUser('G*');
-  expect(out).toBe("user:Gurvan");
-});
+it('render search result -> initial state', () => {
+  const out = renderSearchUserResult();
+  expect(out).toBe('');
+})
 
-it('should return user:Alfred if I search A*', () => {
-  const out = renderSearchUser('A*');
-  expect(out).toBe("user:Alfred");
-});
-
-it('should return "" if I search TU*', () => {
-  const out = renderSearchUser('TU*');
-  expect(out).toBe("");
-});
+it('run a search and validate new render', () => {
+  runNewUserSearch('G*');
+  const out = renderSearchUserResult();
+  expect(out).toBe('user:Gurvan');
+})
