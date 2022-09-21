@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IApi } from './IApi';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { AppThunk } from './types';
 
 const usersSlice = createSlice({
   name: 'users',
@@ -7,7 +8,7 @@ const usersSlice = createSlice({
     searchResult: '',
   },
   reducers: {
-    setSearchResult: (state, action) => {
+    setSearchResult: (state, action: PayloadAction<string>) => {
       state.searchResult = action.payload;
     }
   }
@@ -19,7 +20,7 @@ export const usersReducer = reducer;
 
 const { setSearchResult } = actions
 
-const makeSearchResult = (text: string) => (dispatch: any, _: any, { api }: { api: IApi }) => {
+const makeSearchResult = (text: string): AppThunk => async (dispatch, _, { api }) => {
   const callResult = api.callSearchUser(text);
   if (callResult.status == 'ok') {
     const result = callResult.result;
@@ -33,4 +34,6 @@ const makeSearchResult = (text: string) => (dispatch: any, _: any, { api }: { ap
 
 export { makeSearchResult };
 
+// TODO: how to type state when you don't know the full RootState?
+// maybe look this doc to type on middleware declaration : https://redux.js.org/usage/usage-with-typescript#type-checking-middleware
 export const selectUserSearchResult = (state: any) => state.users.searchResult

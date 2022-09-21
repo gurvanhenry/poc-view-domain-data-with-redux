@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import { usersReducer } from '../domain-shared/usersSlice';
-import { IApi } from '../domain-shared/IApi';
+import { IApi } from './../domain-shared/IApi';
 import { Api } from '../data/Api';
 
 const api: IApi = new Api();
@@ -17,3 +18,7 @@ const store = configureStore({
 });
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
