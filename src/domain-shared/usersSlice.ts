@@ -25,6 +25,10 @@ const makeSearchResult = (text: string) => (dispatch: any, _: any, { api }: { ap
     const result = callResult.result;
     dispatch(setSearchResult(result));
   }
+  else if (callResult.status == 'error') {
+    const result = "-nothing-";
+    dispatch(setSearchResult(result));
+  }
 }
 
 export { makeSearchResult };
