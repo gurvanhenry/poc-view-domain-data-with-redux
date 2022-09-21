@@ -20,7 +20,7 @@ export const usersReducer = reducer;
 
 const { setSearchResult } = actions
 
-const makeSearchResult = (text: string): AppThunk => async (dispatch, _, { api }) => {
+const makeSearchUser = (text: string): AppThunk => async (dispatch, _, { api }) => {
   const callResult = api.callSearchUser(text);
   if (callResult.status == 'ok') {
     const result = callResult.result;
@@ -32,7 +32,7 @@ const makeSearchResult = (text: string): AppThunk => async (dispatch, _, { api }
   }
 }
 
-export { makeSearchResult };
+export { makeSearchUser };
 
 // TODO: how to type state when you don't know the full RootState?
 // maybe look this doc to type on middleware declaration : https://redux.js.org/usage/usage-with-typescript#type-checking-middleware

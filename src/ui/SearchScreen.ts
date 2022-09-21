@@ -1,5 +1,5 @@
 import store from '../domain-ui/store';
-import { makeSearchResult, selectUserSearchResult } from '../domain-shared/usersSlice';
+import { makeSearchUser, selectUserSearchResult } from '../domain-shared/usersSlice';
 
 export function renderSearchUserResult() {
   const searchResult = selectUserSearchResult(store.getState());
@@ -7,5 +7,5 @@ export function renderSearchUserResult() {
 }
 
 export function runNewUserSearch(text: string) {
-  store.dispatch(makeSearchResult(text));
+  store.dispatch(makeSearchUser(text));
 }
